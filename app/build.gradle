@@ -27,7 +27,7 @@ dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
 
     // https://mvnrepository.com/artifact/com.aventstack/extentreports
-    implementation group: 'com.aventstack', name: 'extentreports', version: '5.0.8'
+    implementation group: 'com.relevantcodes', name: 'extentreports' , version: '2.40.2'
 
 
 }

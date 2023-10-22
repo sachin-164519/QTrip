@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumWrapper {
     public static boolean click(WebElement elementToClick, ChromeDriver driver){
@@ -24,6 +25,14 @@ public class SeleniumWrapper {
             return true;
         }else
             return false;
+    }
+
+    public static boolean navigate(ChromeDriver driver, String url){
+        if(!driver.getCurrentUrl().equals(url)){
+            driver.get(url);
+            return true;
+        }else
+        return false;
     }
 
     public static WebElement findElementWithRetry(ChromeDriver driver, By by, int reCount){

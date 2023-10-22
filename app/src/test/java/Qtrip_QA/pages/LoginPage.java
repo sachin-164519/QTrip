@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import Qtrip_QA.SeleniumWrapper;
+
 public class LoginPage {
     ChromeDriver driver;
      String url = "https://qtripdynamic-qa-frontend.vercel.app/pages/login";
@@ -23,10 +25,13 @@ public class LoginPage {
     }
 
     public void navigateToLoginPage(){
-
+        SeleniumWrapper.navigate(driver, url);
     }
 
-    public void performLogin(){
-        
+    public void performLogin(String username, String password) throws InterruptedException{
+        SeleniumWrapper.sendKeys(username_txt_box, username);
+        SeleniumWrapper.sendKeys(password_txt_box, password);
+        SeleniumWrapper.click(loginBtn, driver);
+        Thread.sleep(3000);
     }
 }

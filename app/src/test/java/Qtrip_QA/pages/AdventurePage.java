@@ -7,6 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import Qtrip_QA.SeleniumWrapper;
 
 public class AdventurePage {
     ChromeDriver driver;
@@ -31,19 +34,34 @@ public class AdventurePage {
         PageFactory.initElements(ajax, this);
     }
 
-    public void setFilterValue(){
-
+    public void setFilterValue(String filter){
+        if(filter.equalsIgnoreCase("reset")){
+            clearFilter.click();
+        }else{
+            Select select = new Select(filterDrpDwn);
+            select.selectByVisibleText(filter);
+        }
     }
 
-    public void setCategoryValue(){
-
+    public void setCategoryValue(String category){
+        if(category.equalsIgnoreCase("reset")){
+            clearCategory.click();
+        }else{
+            Select select = new Select(categoryDrpDwn);
+            select.selectByVisibleText(category);
+        }
     }
 
-    public void getResultCount(){
-
+    public int getResultCount(){
+        return resultCount.size();
     }
 
-    public void selectAdventure(){
-        
+    public void selectAdventure(String adventure) throws InterruptedException{
+        searchAdventure.sendKeys(adventure);
+            Thread.sleep(3000);
+            if(adventureResult.getText().contains(adventure)){
+                SeleniumWrapper.click(adventureResult, driver);
+                Thread.sleep(3000);
+            }
     }
 }
